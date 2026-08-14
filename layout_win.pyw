@@ -31,7 +31,12 @@ def process_selected_text(endpoint_url):
 
         # 2. Имитируем Ctrl+C. 
         # Библиотека keyboard сама отпустит физические Scroll Lock/Pause, чтобы не мешать Windows
-        keyboard.send('ctrl+c')
+        keyboard.press('ctrl')
+        time.sleep(0.02)
+        keyboard.send(46) 
+        time.sleep(0.02)
+        keyboard.release('ctrl')
+        
         time.sleep(0.08)  # Пауза, чтобы Windows успела записать текст в буфер
 
         selected = pyperclip.paste()
@@ -51,7 +56,11 @@ def process_selected_text(endpoint_url):
             time.sleep(0.05)
             
             # Вставляем исправленный текст
-            keyboard.send('ctrl+v')
+            keyboard.press('ctrl')
+            time.sleep(0.02)
+            keyboard.send(47)
+            time.sleep(0.02)
+            keyboard.release('ctrl')
             time.sleep(0.08)
             #print(f"[Лог]: Успешно заменено на: {fixed[:20]}...")
             
